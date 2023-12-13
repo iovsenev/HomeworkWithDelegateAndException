@@ -1,39 +1,27 @@
 ﻿namespace HomeworkWithDelegateAndException
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Exception[] exceptions =
+            ExceptionTask.Run();
+            Console.WriteLine();
+            List<string> lastNames = new List<string>
             {
-                new ArgumentException("Не верный аргумент"),
-                new Exception("Что то сломалось"),
-                new EnterException("Не верный ввод"),
-                new ArgumentNullException ("Входной аргумет"),
-                new ArgumentOutOfRangeException ("Входной аргумент")
+                "Попов",
+                "Александров",
+                "Сидоров",
+                "Иванов",
+                "Васечкин"
             };
-            foreach (Exception ex in exceptions)
+            FamalyList.Run(lastNames);
+            Console.WriteLine();
+
+            foreach (string name in lastNames)
             {
-                try
-                {
-                    throw ex;
-                }
-                catch (Exception ex2)
-                {
-                    ConsoleColor defCol = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\n=========================");
-                    Console.WriteLine("Вы вызвали ошибку");
-                    Console.WriteLine(ex2.Message);
-                    Console.WriteLine("=========================\n");
-                    Console.ForegroundColor = defCol;
-                }
-                finally
-                {
-                    Console.WriteLine( "Finally, do something");
-                }
-                Console.ReadLine();
+                Console.WriteLine(name);
             }
+            Console.ReadLine();
         }
     }
 }
